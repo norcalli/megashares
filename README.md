@@ -9,7 +9,7 @@ go get github.com/norcalli/megashares
 
 ##Example:
   ###Shitty client:
-There is a [shitty example]("https://github.com/norcalli/megashares/shittyclient.go") (aptly named `shittyclient.go`) in the repository. It should serve as a starting point for figuring out how to use the API. Usage:
+There is a [shitty example]("https://github.com/norcalli/megashares/example/shittyclient.go") (aptly named `shittyclient.go`) in the repository. It should serve as a starting point for figuring out how to use the API. Usage:
 
 This will print the results of the query:
 ```
