@@ -30,22 +30,22 @@ func New() *Megashares {
 	// m.Client := &http.Client{Jar: cookieJar}
 }
 
-type MegasharesEntry struct {
+type Entry struct {
 	Url      string
 	Filename string
 }
 
-func (m *MegasharesEntry) String() string {
+func (m *Entry) String() string {
 	return m.Filename
 }
 
-func EntryFromURL(url string) (*MegasharesEntry, error) {
+func ParseEntryFromURL(url string) (*Entry, error) {
 	// TODO: Double check url format.
 	i := strings.LastIndex(url, `fln=/`)
 	if i < 0 {
 		return nil, fmt.Errorf("Download url doesn't conform to 'fln=/'.")
 	}
-	return &MegasharesEntry{url, url[i+5:]}, nil
+	return &Entry{url, url[i+5:]}, nil
 }
 
 func (m *Megashares) Login(username, password string) error {
@@ -90,7 +90,7 @@ func (m *Megashares) SearchResponse(query string) (*http.Response, error) {
 	return r, nil
 }
 
-func (m *Megashares) SearchEntries(query string) ([]*MegasharesEntry, error) {
+func (m *Megashares) SearchEntries(query string) ([]*Entry, error) {
 	values := url.Values{
 		"q":      {query},
 		"simple": {"Submit"},
@@ -105,11 +105,11 @@ func (m *Megashares) SearchEntries(query string) ([]*MegasharesEntry, error) {
 		log.Fatal(err)
 	}
 	urls := d.Find("div.float-r a img").Parent()
-	entries := make([]*MegasharesEntry, urls.Length())
+	entries := make([]*Entry, urls.Length())
 	urls.Each(func(i int, s *gq.Selection) {
 		v, _ := s.Attr(`href`)
 		// TODO: Handling errors?
-		entries[i], _ = EntryFromURL(v)
+		entries[i], _ = ParseEntryFromURL(v)
 	})
 	return entries, nil
 }
