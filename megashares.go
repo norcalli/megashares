@@ -54,13 +54,15 @@ func (m *Megashares) Login(username, password string) error {
 		"mymspassword":   {password},
 		"myms_login":     {"Login"},
 	}
-	r, err := m.Client.PostForm(loginURL, values)
-	if err != nil {
-		log.Fatal(err)
+	if r, err := m.Client.PostForm(loginURL, values); err != nil {
 		return err
+	} else {
+		r.Body.Close()
+		if r.StatusCode == 302 {
+			return nil
+		}
+		return fmt.Errorf("Invalid login.")
 	}
-	defer r.Body.Close()
-	return nil
 }
 
 func (m *Megashares) Search(query string) ([]byte, error) {
