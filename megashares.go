@@ -57,9 +57,12 @@ func (m *Megashares) Login(username, password string) error {
 	if r, err := m.Client.PostForm(loginURL, values); err != nil {
 		return err
 	} else {
-		r.Body.Close()
-		if r.StatusCode == 302 {
-			return nil
+		if data, err := ioutil.ReadAll(r.Body); err != nil {
+			return err
+		} else {
+			if strings.Contains(string(data), "premium") {
+				return nil
+			}
 		}
 		return fmt.Errorf("Invalid login.")
 	}
