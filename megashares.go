@@ -108,7 +108,8 @@ func (m *Megashares) SearchEntries(query string) ([]*MegasharesEntry, error) {
 	entries := make([]*MegasharesEntry, urls.Length())
 	urls.Each(func(i int, s *gq.Selection) {
 		v, _ := s.Attr(`href`)
-		entries[i] = EntryFromURL(v)
+		// TODO: Handling errors?
+		entries[i], _ = EntryFromURL(v)
 	})
 	return entries, nil
 }
