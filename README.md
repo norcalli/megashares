@@ -1,4 +1,4 @@
-#Megashares in Go [![GoDoc](https://godoc.org/github.com/norcalli/megashares?status.png)](https://godoc.org/github.com/norcalli/megashares)
+#Megashares in Go [![GoDoc](https://godoc.org/github.com/norcalli/megashares?status.png)](https://godoc.org/github.com/norcalli/megashares)[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/ccbe1c6a14b75fa01e637a1280631af5 "githalytics.com")](http://githalytics.com/norcalli/megashares)
 
 Megashares API written in Go.
 
