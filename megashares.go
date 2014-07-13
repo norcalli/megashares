@@ -2,14 +2,14 @@ package megashares
 
 import (
 	"fmt"
-	// "io"
-	gq "github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
 	"strings"
+
+	gq "github.com/PuerkitoBio/goquery"
 )
 
 const (
