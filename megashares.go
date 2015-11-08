@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	loginURL  = "http://d01.megashares.com/myms_login.php"
+	loginURL  = "https://d01.megashares.com/myms_login.php"
 	searchURL = "http://www.megashares.com/search.php"
 )
 
